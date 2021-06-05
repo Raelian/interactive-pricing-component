@@ -1,0 +1,364 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap');
+
+/* Primary colors */
+$sft-cyan: hsl(174, 77%, 80%); // (Full Slider Bar)
+$str-cyan: hsl(174, 86%, 45%); // (Slider Backround)
+$light-grayish-red: hsl(14, 92%, 95%); // (Discount Background)
+$light-red: hsl(15, 100%, 70%); // (Discount Text)
+$pale-blue: hsl(226, 100%, 87%); // (CTA Text)
+
+/* Neutral Colors */
+$white: hsl(0, 0%, 100%); // (Pricing Component Background)
+$vry-pale-blue: hsl(230, 100%, 99%); // (Main Background)
+$light-grayish-blue-1: hsl(224, 65%, 95%); // (Empty Slider Bar)
+$light-grayish-blue-2: hsl(223, 50%, 87%); // (Toggle Background)
+$grayish-blue: hsl(225, 20%, 60%); // (Text)
+$drk-desat-blue: hsl(227, 35%, 25%); // (Text & CTA Background)
+
+/* Custom colors */
+$cc-slider-box-shadow: hsla(174, 86%, 45%, .4);
+$cc-main-box-shadow: hsla(225, 20%, 60%, .3);
+$cc-active-thumb-slider: rgb(59, 163, 153);
+
+/* Font size */
+$intro-p: 15px;
+
+/* Font family */
+$ff-manrope: 'Manrope', sans-serif;
+
+/* Mixin */
+
+@mixin custom-thumb-slider {
+    appearance: none;
+    width: 38px;
+    height: 38px;
+    border: none;
+    border-radius: 50%;
+    background-image: url(images/icon-slider.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: $str-cyan;
+    box-shadow: 0 20px 20px $cc-slider-box-shadow;
+}
+
+@mixin custom-toggle-billing {
+    width: 40px;
+    height: 20px;
+    border: none;
+    border-radius: 50px;
+    background-color: $light-grayish-blue-2;
+    cursor: pointer;
+}
+
+:root {
+    font-family: $ff-manrope;
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    background-image: url(images/bg-pattern.svg);
+    background-repeat: no-repeat;
+    background-position: 0 -50px;
+    background-color: $vry-pale-blue;
+    display: flex;
+    flex-direction: column;
+}
+
+.header,
+.main {
+    width: 315px;
+    margin: 0 auto;
+}
+
+.header {
+    margin-top: 55px;
+    height: 150px;
+    background-image: url(images/pattern-circles.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: center;
+
+    &__title {
+        font-size: 1.2rem;
+        font-weight: 800;
+        padding-top: 35px;
+        color: $drk-desat-blue;
+    }
+
+    &__text {
+        color: $grayish-blue;
+        font-size: .8rem;
+        font-weight: 600;
+        width: 180px;
+        line-height: 1.5rem;
+        margin: 5px auto 0;
+    }
+}
+
+.main {
+    margin-top: 28px;
+    height: 480px;
+    background-color: $white;
+    border: none;
+    border-radius: 10px;
+    color: $grayish-blue;
+    box-shadow: 0 10px 10px $cc-main-box-shadow;
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__pageviews {
+        grid-area: views;
+        margin-top: 34px;
+        font-weight: 800;
+        font-size: .75rem;
+        text-transform: uppercase;
+        letter-spacing: .1rem;
+    }
+
+    &__input-slider {
+        grid-area: slider;
+        appearance: none;
+        width: 280px;
+        height: 8px;
+        margin-top: 42px;
+        background-color: $light-grayish-blue-1;
+        border-radius: 50px;
+        outline: none;
+        cursor: pointer;
+
+        &::-webkit-slider-thumb {
+            @include custom-thumb-slider;
+        }
+
+        &:active::-webkit-slider-thumb,
+        &:focus::-webkit-slider-thumb {
+            background-color: $cc-active-thumb-slider;
+        }
+
+        &::-moz-range-thumb {
+            @include custom-thumb-slider;
+        }
+
+        &:active::-moz-range-thumb,
+        &:focus::-moz-range-thumb {
+            background-color: $cc-active-thumb-slider;
+        }
+    }
+
+    &__price {
+        grid-area: price;
+        display: flex;
+        flex-direction: row;
+        text-align: center;
+        margin-top: 38px;
+        font-size: .9rem;
+        font-weight: 600;
+        align-items: center;
+    }
+
+    &__price--month,
+    &__price--year { padding-left: 10px; }
+
+    &__price--month { display: block; }
+    &__price--year { display: none; }
+
+    &__price-number {
+        font-size: 2rem;
+        font-weight: 800;
+        color: $drk-desat-blue;
+    }
+
+    &__billing {
+        grid-area: billing;
+        display: flex;
+        flex-direction: row;
+        margin-top: 34px;
+        font-size: .8rem;
+        font-weight: 600;
+    }
+
+    &__billing-label {
+        @include custom-toggle-billing;
+
+        position: relative;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        margin: 0 10px;
+
+    }
+
+    &__billing-switch {
+        @include custom-toggle-billing;
+
+        position: absolute;
+        left: 4px;
+        appearance: none;
+        width: 14px;
+        height: 14px;
+        background-color: $white;
+        border: none;
+        border-radius: 50%;
+        outline: none;
+        transition: linear .1s;
+
+        &:focus {
+            border: 1px solid hsla(0, 0%, 0%, 0.4);
+        }
+    }
+
+    &__billing-discount {
+        background-color: $light-grayish-red;
+        color: $light-red;
+        font-size: .6rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 10px;
+        border: none;
+        border-radius: 50px;
+        width: 40px;
+        height: 20px;
+
+        > span { display: none; }
+    }
+
+    &__list {
+        grid-area: item-list;
+        margin-top: 60px;
+        font-size: .75rem;
+        text-align: center;
+        list-style-type: none;
+
+        > li {
+            margin-top: 10px;
+            font-weight: 600;
+
+            &::before {
+                content: url(images/icon-check.svg);
+                margin-right: 16px;
+            }
+        }
+    }
+
+    &__trial-btn {
+        grid-area: cta-btn;
+        margin-top: 26px;
+        background-color: $drk-desat-blue;
+        color: $pale-blue;
+        width: 172px;
+        height: 44px;
+        border: none;
+        border-radius: 50px;
+        outline: none;
+        cursor: pointer;
+
+        &:focus,
+        &:hover {
+            color: $white;
+        }
+    }
+}
+
+@media screen and (min-width: 700px) {
+    html,
+    body { 
+        background-position: 0 0; 
+        background-size: 100vw auto;
+    }
+
+    .header,
+    .main { width: 544px; }
+
+    .header {
+        margin-top: 70px;
+        height: 150px;
+        background-image: url(images/pattern-circles.svg);
+        background-repeat: no-repeat;
+        background-position: center;
+        text-align: center;
+    
+        &__title { font-size: 1.8rem; }
+    
+        &__text {
+            margin-top: 14px;
+            padding: 0;
+            font-size: .95rem;
+            width: auto;
+        }
+    }
+
+    .main {
+        margin-top: 48px;
+        height: 400px;
+        
+        &__form {
+            display: grid;
+            grid-template-areas: 'views price'
+                                 'slider slider'
+                                 'billing billing'
+                                 'item-list cta-btn';
+            width: inherit;
+            height: inherit;
+            padding: 10px 0 0 46px;
+        }
+    
+        &__pageviews {
+            margin-top: -20px;
+            font-size: .9rem;
+        }
+    
+        &__input-slider {
+            width: 444px;
+            height: 8px;
+            margin-top: -74px;
+        }
+
+        &__price {
+            text-align: end;
+            margin-top: -16px;
+            margin-left: 60px;
+            font-size: 1rem;
+        }
+        
+        &__price-number { font-size: 2.4rem; }
+    
+        &__price--month,
+        &__price--year { padding-left: 8px; }
+        
+    
+        &__billing { margin: -100px auto 0 116px; }
+
+        &__billing-discount {
+            width: 82px;
+            height: 18px;
+
+            > span {
+                padding-left: 2px;
+                display: block;
+            }
+        }
+    
+        &__list {
+            margin-top: -56px;
+            text-align: left;
+        }
+    
+        &__trial-btn {
+            margin: -40px 11px 0 85px;
+            height: 40px;
+        } 
+    }
+}

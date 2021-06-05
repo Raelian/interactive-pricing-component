@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <link rel="stylesheet" href="index.css" type="text/css">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  
+  <title>Frontend Mentor | Interactive pricing component</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 11px; text-align: center; margin-top: 20px; margin-bottom: 10px; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <h1 class="header__title">Simple, traffic-based pricing</h1>
+    <div class="header__text">
+      <p>Sign-up for our 30-day trial. No credit card required.</p>
+    </div>
+  </header>
+
+    <main class="main">
+      <form class="main__form">  
+        <p class="main__pageviews">
+          <output name="pageviews-number" for="input" class="main__pageviews-number">100k</output>
+          Pageviews
+        </p>
+        <input
+          type="range"
+          name="input"
+          class="main__input-slider"
+          id="slider"
+          value="2"
+          min="0"
+          max="4" 
+          aria-label="Price slider"
+        >
+        <div class="main__price">
+          <output name="price-output" for="input" class="main__price-number">$16.00</output>
+          <p class="main__price--month"> / month</p>
+          <p class="main__price--year"> / year</p>
+        </div>
+
+        <div class="main__billing">
+          <p>Monthly Billing</p> 
+          <label for="toggle" class="main__billing-label">
+            <input type="checkbox" name="toggle" id="toggle" class="main__billing-switch"></input>  
+          </label>
+          <p>Yearly Billing</p>   
+          <p class="main__billing-discount">25%<span>discount</span></p>
+        </div>
+
+        <ul class="main__list">
+          <li>Unlimited websites</li>
+          <li>100% data ownership</li>
+          <li>Email reports</li>
+        </ul>
+
+        <button class="main__trial-btn" type="submit">Start my trial</button>
+      </form>
+    </main>
+
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+    <br> 
+    Coded by <a href="https://www.frontendmentor.io/profile/Raelian">Rael</a>.
+  </div>
+
+  <script src="index.js"></script>
+</body>
+</html>
